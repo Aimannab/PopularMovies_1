@@ -49,6 +49,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MainActivity.MovieViewHo
 
         Picasso.with(mContext).load(movie.getPoster()).placeholder(R.color.colorAccent).into(holder.imageView);
 
+
     }
 
     @Override

@@ -12,28 +12,28 @@ public class DetailActivity extends AppCompatActivity {
     private TextView mMovieDetail;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        mMovieDetail = (TextView) findViewById(R.id.mMovieDetail);
+        mMovieDetail = (TextView) findViewById(R.id.mMovieDetailTextView);
 
         Intent intent = getIntent();
 
         String newString;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                newString= null;
+            if (extras == null) {
+                newString = null;
             } else {
-                newString= extras.getString("myMovieDetailKey");
+                newString = extras.getString("myMovieDetailKey");
             }
         } else {
-            newString= (String) savedInstanceState.getSerializable("myMovieDetailKey");
+            newString = (String) savedInstanceState.getSerializable("myMovieDetailKey");
         }
 
-       /* if (intent != null) {
+        /*if (intent != null) {
             if (intent.hasExtra()) {
                 mMovieDetailString = intent.getStringExtra(Intent.EXTRA_TEXT);
                 mMovieDetail.setText(mMovieDetailString);
@@ -41,6 +41,4 @@ public class DetailActivity extends AppCompatActivity {
         }*/
 
     }
-
-
 }
