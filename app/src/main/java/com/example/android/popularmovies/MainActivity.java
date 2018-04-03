@@ -1,5 +1,6 @@
 package com.example.android.popularmovies;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toolbar;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         //spanCount refers to number of columns in a grid
-        mAdapter = new MoviesAdapter(this);
+        mAdapter = new MoviesAdapter(this, this);
         mRecyclerView.setAdapter(mAdapter);
         List<Movie> movies = new ArrayList<>();
 
@@ -137,36 +139,4 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
         startActivity(intent);
     }
 
-    //Creating intent - Web Browser - Needs modification
-    /*public void onClickOpenWebpage(String text) {
-
-            Context context = this;
-
-            Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra(Intent.EXTRA_TEXT, text);
-            startActivity(intent);
-    }
-        String urlAsString = "http://www.udacity.com";
-        openWebPage(urlAsString);
-    }*/
-
-    /*public void openWebPage(String url) {
-        Uri webpage = Uri.parse(url);
-        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }*/
-
-    //Inner class
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
-
-        public ImageView imageView;
-        public MovieViewHolder(View itemView) {
-            super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
-
-        }
-
-    }
 }

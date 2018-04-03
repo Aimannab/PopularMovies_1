@@ -4,5 +4,4 @@
     android:layout_height="wrap_content"
     android:id="@+id/imageView"
     android:adjustViewBounds="true"
-    android:onClick="onClick"
     />
