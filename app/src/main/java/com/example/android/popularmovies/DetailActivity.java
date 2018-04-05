@@ -17,7 +17,23 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        mMovieDetail = (TextView) findViewById(R.id.mMovieDetailTextView);
+        //Create a Detail Fragment and add it to the activity
+        if(savedInstanceState == null) {
+            Movie movieObject = (Movie) getIntent().getSerializableExtra("movieObject");
+
+            Bundle arguments = new Bundle();
+
+            arguments.putSerializable("movieObject", movieObject);
+
+            DetailsActivityFragment fragment = new DetailsActivityFragment();
+            fragment.setArguments(arguments);
+
+            mMovieDetail = (TextView) findViewById(R.id.mMovieDetailTextView);
+
+            //getSupportFragmentManager().beginTransaction().add(mMovieDetail, fragment).commit();
+        }
+
+        /*mMovieDetail = (TextView) findViewById(R.id.mMovieDetailTextView);
 
         Intent intent = getIntent();
 
@@ -31,7 +47,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         } else {
             newString = (String) savedInstanceState.getSerializable("myMovieDetailKey");
-        }
+        }*/
 
         /*if (intent != null) {
             if (intent.hasExtra()) {

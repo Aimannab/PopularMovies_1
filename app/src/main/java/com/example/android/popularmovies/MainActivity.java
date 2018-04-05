@@ -30,7 +30,7 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MainActivity extends AppCompatActivity implements MoviesAdapter.MovieAdapterOnClickHandler{
+public class MainActivity extends AppCompatActivity implements MoviesAdapter.MovieAdapterOnClickHandler {
 
     private static final String DISCOVER_STATE_EXTRA = "state";
     private static final String DISCOVER_POPULAR_STATE = "popular";
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
 
 
     //Creating intent - new activity - DetailActivity
-    @Override
+    /*@Override
     public void onClick(String movieDetail) {
         Context context = this;
 
@@ -137,6 +137,38 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra("myMovieDetailKey", movieDetail);
         startActivity(intent);
+    }*/
+
+    boolean mTwoPane;
+    private static final String DETAILFRAGMENT_TAG = "DFTAG";
+
+
+    @Override
+    public void onMovieItemClicked(Movie movieObject) {
+
+        if (mTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            View view = findViewById(R.id.mMovieDetailTextView);
+            if(view.getVisibility()==View.INVISIBLE) {
+                findViewById(R.id.mMovieDetailTextView).setVisibility(View.VISIBLE);
+            }
+            /*Bundle args = new Bundle();
+
+            DetailsActivityFragment fragment = new DetailsActivityFragment();
+            args.putSerializable("movieObject", movieObject);
+            fragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.mMovieDetailTextView, fragment, DETAILFRAGMENT_TAG)
+                    .commit();
+
+        }*/ else {
+            Intent detailsIntent = new Intent(this, DetailActivity.class);
+            detailsIntent.putExtra("movieObject", movieObject);
+            startActivity(detailsIntent);
+        }
     }
 
+    }
 }

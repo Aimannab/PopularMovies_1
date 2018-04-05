@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -22,7 +23,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
     //Interface implemented on MainActivity class
     public interface MovieAdapterOnClickHandler {
-        void onClick(String movieDetail);
+        void onMovieItemClicked(Movie movieObject);
     }
 
     private Context mContext;
@@ -39,24 +40,23 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
 
     //Inner class
-    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MovieViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView imageView;
         public MovieViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            imageView.setOnClickListener(this);
 
         }
 
-        @Override
+        /*@Override
         public void onClick(View view) {
 
             int adapterPosition = getAdapterPosition();
-            String mEachMoviewDetail = mMovieDetail[adapterPosition];
-            mClickHandler.onClick(mEachMoviewDetail);
+            String mEachMovieDetail = mMovieDetail[adapterPosition];
+            mClickHandler.onClick(mEachMovieDetail);
 
-        }
+        }*/
     }
 
 
@@ -70,8 +70,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         return viewHolder;
     }
 
+
     @Override
-    public void onBindViewHolder(MoviesAdapter.MovieViewHolder holder, int position) {
+    public void onBindViewHolder(MoviesAdapter.MovieViewHolder holder, final int position) {
 
         Movie movie = mMovieList.get(position);
 
@@ -79,19 +80,26 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
         Picasso.with(mContext).load(movie.getPoster()).placeholder(R.color.colorAccent).into(holder.imageView);
 
+
         holder.imageView.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                //PENDINGGGGGGGGGGGGGGGGGGG
+                mClickHandler.onMovieItemClicked(mMovieList.get(position));
+                //Toast.makeText(mContext,"clicked",Toast.LENGTH_SHORT).show();
+
             }
         });
+
 
 
     }
 
     @Override
     public int getItemCount() {
+
         return (mMovieList == null) ? 0: mMovieList.size();
+
     }
 
     public void setMovieList(List<Movie> movieList) {
@@ -99,6 +107,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         this.mMovieList.addAll(movieList);
         //This is done so we know that data has changed. To avoid crashing of app
 
+
+
         notifyDataSetChanged();
     }
+
 }
