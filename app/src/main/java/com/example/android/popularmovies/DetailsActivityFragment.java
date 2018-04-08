@@ -2,6 +2,9 @@ package com.example.android.popularmovies;
 
 import android.app.Fragment;
 
+/**
+ * Created by Aiman Nabeel on 05/04/18
+ */
 
 public class DetailsActivityFragment extends Fragment {
 

@@ -163,12 +163,11 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
                     .replace(R.id.mMovieDetailTextView, fragment, DETAILFRAGMENT_TAG)
                     .commit();
 
-        }*/ else {
+        }*/ } else {
             Intent detailsIntent = new Intent(this, DetailActivity.class);
             detailsIntent.putExtra("movieObject", movieObject);
             startActivity(detailsIntent);
         }
     }
 
-    }
 }
