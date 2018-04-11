@@ -1,10 +1,14 @@
 package com.example.android.popularmovies;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.view.MenuItem;
+
+/**
+ * Created by Aiman Nabeel on 13/03/18
+ */
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -18,7 +22,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         //Create a Detail Fragment and add it to the activity
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             Movie movieObject = (Movie) getIntent().getSerializableExtra("movieObject");
 
             Bundle arguments = new Bundle();
@@ -28,33 +32,20 @@ public class DetailActivity extends AppCompatActivity {
             DetailsActivityFragment fragment = new DetailsActivityFragment();
             fragment.setArguments(arguments);
 
-            mMovieDetail = (TextView) findViewById(R.id.mMovieDetailTextView);
-
-            //getSupportFragmentManager().beginTransaction().add(mMovieDetail, fragment).commit();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.mMovieDetailTextView, fragment)
+                    .commit();
         }
-
-        /*mMovieDetail = (TextView) findViewById(R.id.mMovieDetailTextView);
-
-        Intent intent = getIntent();
-
-        String newString;
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if (extras == null) {
-                newString = null;
-            } else {
-                newString = extras.getString("myMovieDetailKey");
-            }
-        } else {
-            newString = (String) savedInstanceState.getSerializable("myMovieDetailKey");
-        }*/
-
-        /*if (intent != null) {
-            if (intent.hasExtra()) {
-                mMovieDetailString = intent.getStringExtra(Intent.EXTRA_TEXT);
-                mMovieDetail.setText(mMovieDetailString);
-            }
-        }*/
-
     }
-}
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            if (item.getItemId() == android.R.id.home) {
+                finish();
+            }
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+

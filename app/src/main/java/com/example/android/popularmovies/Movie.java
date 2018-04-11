@@ -5,14 +5,15 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+/**
+ * Created by Aiman Nabeel on 07/03/18
+ */
 
 public class Movie implements Serializable {
 
     public static final String TMDB_IMAGE_PATH = "http://image.tmdb.org/t/p/w500";
 
-    private String title;
 
     @SerializedName("poster_path")
     private String poster;
@@ -22,6 +23,9 @@ public class Movie implements Serializable {
 
     @SerializedName("backdrop_path")
     private String backdrop;
+
+    @SerializedName("title")
+    private String title;
 
     public Movie() {}
 
@@ -60,28 +64,19 @@ public class Movie implements Serializable {
         this.backdrop = backdrop;
     }
 
-    /*@SerializedName("results")
-    private ArrayList<Movie> movieObjectsAl;
-
+    //New methods. Revise...
     @SerializedName("page")
     private int page;
 
-    public ArrayList<Movie> getMovieObjectsAl() {
-        return movieObjectsAl;
-    }
 
     public int getPage() {
         return page;
     }
 
-        @SerializedName("poster_path")
-        private String poster;
 
         @SerializedName("adult")
         private boolean isAdult;
 
-        @SerializedName("overview")
-        private String overView;
 
         @SerializedName("release_date")
         private String releaseDate;
@@ -92,17 +87,10 @@ public class Movie implements Serializable {
         @SerializedName("id")
         private long id;
 
-        @SerializedName("original_title")
-        private String originalTitle;
 
         @SerializedName("original_language")
         private String originalLanguage;
 
-        @SerializedName("title")
-        private String title;
-
-        @SerializedName("backdrop_path")
-        private String backDropPath;
 
         @SerializedName("popularity")
         private float popularity;
@@ -117,16 +105,8 @@ public class Movie implements Serializable {
         private float voteAverage;
 
 
-        public String getPoster() {
-            return poster;
-        }
-
         public boolean isAdult() {
             return isAdult;
-        }
-
-        public String getOverView() {
-            return overView;
         }
 
         public String getReleaseDate() {
@@ -141,21 +121,10 @@ public class Movie implements Serializable {
             return id;
         }
 
-        public String getOriginalTitle() {
-            return originalTitle;
-        }
-
         public String getOriginalLanguage() {
             return originalLanguage;
         }
 
-        public String getTitle() {
-            return title;
-        }
-
-        public String getBackDropPath() {
-            return backDropPath;
-        }
 
         public float getPopularity() {
             return popularity;
@@ -171,7 +140,7 @@ public class Movie implements Serializable {
 
         public float getVoteAverage() {
             return voteAverage;
-        }*/
+        }
 
 
     //Class for Movie List
