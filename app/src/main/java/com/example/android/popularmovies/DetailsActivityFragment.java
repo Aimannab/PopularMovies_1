@@ -38,6 +38,16 @@ import org.json.JSONObject;
  * Created by Aiman Nabeel on 05/04/18
  */
 
+/***************************************************************************************
+        *    Title: PopularMovies
+        *    Author: Ravi Sravan Kumar
+        *    Date: 2018
+        *    Code version: N/A
+        *    Availability: https://github.com/ravisravan89/PopularMovies
+        *
+        ***************************************************************************************/
+
+
 public class DetailsActivityFragment extends Fragment {
 
     LinearLayoutManager mLayoutManager;
@@ -47,7 +57,7 @@ public class DetailsActivityFragment extends Fragment {
 
     final String BASE_URL = "http://api.themoviedb.org/3/movie/";
     //TODO Remove this key before uploading the project
-    String api_key_value = "11111";
+    String api_key_value = "faaa06f746cc46c17d321731163eaae2";
     final int PURPOSE_TRAILER = 1;
     final int PURPOSE_REVIEWS = 2;
     final String TRAILER_QUERY = "/videos?";

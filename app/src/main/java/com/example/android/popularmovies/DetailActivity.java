@@ -21,7 +21,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        //Create a Detail Fragment and add it to the activity
+        //Create a Detail Activity Fragment and add it to the activity
         if (savedInstanceState == null) {
             Movie movieObject = (Movie) getIntent().getSerializableExtra("movieObject");
 
