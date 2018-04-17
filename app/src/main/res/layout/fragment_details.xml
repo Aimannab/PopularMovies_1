@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
+        android:background="@color/toolbar_color"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
@@ -61,8 +62,8 @@
                 android:layout_height="wrap_content"
                 android:background="@null"
                 android:button="@drawable/favorite_checkbox"
-                android:text="@string/mark_as_favourite"
-                android:checked="false" />
+                android:checked="false"
+                android:text="@string/mark_as_favourite" />
 
             <include
                 android:id="@+id/release_date"
@@ -70,10 +71,6 @@
 
             <include
                 android:id="@+id/original_language"
-                layout="@layout/detail_recycler_item" />
-
-            <include
-                android:id="@+id/overview"
                 layout="@layout/detail_recycler_item" />
 
             <include
@@ -86,6 +83,10 @@
 
             <include
                 android:id="@+id/total_rating"
+                layout="@layout/detail_recycler_item" />
+
+            <include
+                android:id="@+id/overview"
                 layout="@layout/detail_recycler_item" />
 
             <include

@@ -14,7 +14,6 @@ public class Movie implements Serializable {
 
     public static final String TMDB_IMAGE_PATH = "http://image.tmdb.org/t/p/w500";
 
-
     @SerializedName("poster_path")
     private String poster;
 
@@ -27,10 +26,43 @@ public class Movie implements Serializable {
     @SerializedName("title")
     private String title;
 
+    @SerializedName("page")
+    private int page;
+
+    @SerializedName("adult")
+    private boolean isAdult;
+
+
+    @SerializedName("release_date")
+    private String releaseDate;
+
+    @SerializedName("genre_ids")
+    private int [] genre_ids;
+
+    @SerializedName("id")
+    private long id;
+
+
+    @SerializedName("original_language")
+    private String originalLanguage;
+
+
+    @SerializedName("popularity")
+    private float popularity;
+
+    @SerializedName("vote_count")
+    private long voteCount;
+
+    @SerializedName("video")
+    private boolean hasVideo;
+
+    @SerializedName("vote_average")
+    private float voteAverage;
+
     public Movie() {}
 
 
-    //Methods for MainActivity
+    //Methods to set up MainActivity and DetailActivity attributes
     public String getTitle() {
         return title;
     }
@@ -64,86 +96,49 @@ public class Movie implements Serializable {
         this.backdrop = backdrop;
     }
 
-    //New methods. Revise...
-    @SerializedName("page")
-    private int page;
-
-
     public int getPage() {
         return page;
     }
 
-
-        @SerializedName("adult")
-        private boolean isAdult;
-
-
-        @SerializedName("release_date")
-        private String releaseDate;
-
-        @SerializedName("genre_ids")
-        private int [] genre_ids;
-
-        @SerializedName("id")
-        private long id;
-
-
-        @SerializedName("original_language")
-        private String originalLanguage;
-
-
-        @SerializedName("popularity")
-        private float popularity;
-
-        @SerializedName("vote_count")
-        private long voteCount;
-
-        @SerializedName("video")
-        private boolean hasVideo;
-
-        @SerializedName("vote_average")
-        private float voteAverage;
-
-
-        public boolean isAdult() {
+    public boolean isAdult() {
             return isAdult;
         }
 
-        public String getReleaseDate() {
+    public String getReleaseDate() {
             return releaseDate;
         }
 
-        public int[] getGenre_ids() {
+    public int[] getGenre_ids() {
             return genre_ids;
         }
 
-        public long getId() {
+    public long getId() {
             return id;
         }
 
-        public String getOriginalLanguage() {
+    public String getOriginalLanguage() {
             return originalLanguage;
         }
 
 
-        public float getPopularity() {
+    public float getPopularity() {
             return popularity;
         }
 
-        public long getVoteCount() {
+    public long getVoteCount() {
             return voteCount;
         }
 
-        public boolean isHasVideo() {
+    public boolean isHasVideo() {
             return hasVideo;
         }
 
-        public float getVoteAverage() {
+    public float getVoteAverage() {
             return voteAverage;
         }
 
 
-    //Class for Movie List
+    //Inner class for Movie List
     public static class MovieResult implements Serializable {
 
         @SerializedName("results")

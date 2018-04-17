@@ -12,6 +12,7 @@ import android.widget.TextView;
  * Created by Aiman Nabeel on 11/04/2018.
  */
 
+//Not implemented yet
 public class ReviewsActivity extends AppCompatActivity {
 
     Toolbar toolbar;

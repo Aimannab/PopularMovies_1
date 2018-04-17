@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * Created by Aiman Nabeel on 11/04/2018.
  */
 
+//Not implemented yet
 public class ReviewsListAdapter extends BaseAdapter {
 
     ArrayList<ReviewsResponse.ReviewObject> reviewObjectArrayList;

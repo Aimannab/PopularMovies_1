@@ -21,6 +21,7 @@ public class VideoTrailersResponse implements Serializable {
         return trailerObjectArrayList;
     }
 
+    //Methods to set up Movie Trailers option, called in DetailActivityFragment.parseResponseBasedOnPurpose method
     public class TrailerObject implements Serializable {
         @SerializedName("id")
         private String trailerId;

@@ -16,7 +16,7 @@
     <string name="network_error">Please Check the internet connection</string>
     <string name="no_trailers">No Trailers</string>
     <string name="no_reviews">No Reviews</string>
-    <string name="mark_as_favourite">Mark as favoutire</string>
+    <string name="mark_as_favourite">Mark as Favourite</string>
     <string name="sort_favourite">favourites</string>
     <string name="sort_order_key">sort_order</string>
     <string name="sort_popularity">popularity.desc</string>

@@ -38,7 +38,8 @@ import org.json.JSONObject;
  * Created by Aiman Nabeel on 05/04/18
  */
 
-/***************************************************************************************
+/**********************************************************************************************
+        *    This code has been adapted from the following source:
         *    Title: PopularMovies
         *    Author: Ravi Sravan Kumar
         *    Date: 2018
@@ -64,6 +65,7 @@ public class DetailsActivityFragment extends Fragment {
     final String REVIEW_QUERY = "/reviews?";
 
 
+    //Inflating layout for fragment_details, Favorite checkbox and calling bindDataToView method
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,13 +93,11 @@ public class DetailsActivityFragment extends Fragment {
         isFavoriteCheckBox.setChecked(isFavourite);
 
         bindDataToView(view);
-
-        // Inflate the layout for this fragment
         return view;
     }
 
 
-
+    //Setting up DetailActivity layout, CollapsingToolbar, Backdrop image, etc.
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -159,6 +159,7 @@ public class DetailsActivityFragment extends Fragment {
     }
 
 
+    //Extracting movie data individually and binding it to their respective Views. And then calling their respective methods from Movie.class
     private void bindDataToView(View view) {
         //set release date
         setValuesToView(view.findViewById(R.id.release_date), getString(R.string.release_date), movieObject.getReleaseDate());
@@ -172,8 +173,9 @@ public class DetailsActivityFragment extends Fragment {
         setValuesToView(view.findViewById(R.id.popularity), getString(R.string.popularity), "Approx: " + movieObject.getPopularity());
         //set total rating
         setValuesToView(view.findViewById(R.id.total_rating), getString(R.string.total_rating), "Approx: " + movieObject.getVoteCount());
+        //Not implemented yet
         //set show review
-        setValuesToView(view.findViewById(R.id.reviews), getString(R.string.reviews), getString(R.string.read_reviews));
+        /*setValuesToView(view.findViewById(R.id.reviews), getString(R.string.reviews), getString(R.string.read_reviews));
         view.findViewById(R.id.reviews).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,9 +186,10 @@ public class DetailsActivityFragment extends Fragment {
                     Toast.makeText(getActivity(), R.string.network_error, Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
     }
 
+    //Setting up Title and Data TextViews
     private void setValuesToView(View view, String heading, String value) {
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView data = (TextView) view.findViewById(R.id.data);
@@ -194,14 +197,15 @@ public class DetailsActivityFragment extends Fragment {
         data.setText(value);
     }
 
+    //Building Uri with API key, parameters and values
     private void requestServer(String queryKey, final int purpose, long movieId) {
         final String GET_TRAILER_URL = BASE_URL + movieId + queryKey;
-        //Build the url with the params and values.
         String api_key = "api_key";
         Uri builtUri = Uri.parse(GET_TRAILER_URL).buildUpon()
                 .appendQueryParameter(api_key, api_key_value).build();
         String URL = builtUri.toString();
-        //pass second argument as "null" for GET requests
+
+        //Passing second argument as "null" for GET requests
         JsonObjectRequest req = new JsonObjectRequest(URL, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -215,7 +219,7 @@ public class DetailsActivityFragment extends Fragment {
                         VolleyLog.e("Error: ", error.getMessage());
                     }
                 });
-        // add the request object to the queue to be executed
+        //Adding the request object for execution to the queue
         RequestManager.getInstance(getActivity()).addToRequestQueue(req);
     }
 
@@ -245,6 +249,7 @@ public class DetailsActivityFragment extends Fragment {
                         }
                     }
                     break;
+                //Not implemented yet
                 case PURPOSE_REVIEWS:
                     final ReviewsResponse reviewsResponse = new Gson().fromJson(response.toString(), ReviewsResponse.class);
                     int reviews = reviewsResponse.getTotalresults();
@@ -260,6 +265,7 @@ public class DetailsActivityFragment extends Fragment {
             }
     }
 
+    //Setting up intent to watch movie trailers on Youtube
     public void watchYoutubeVideo(String id) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));

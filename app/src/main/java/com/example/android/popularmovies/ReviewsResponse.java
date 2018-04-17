@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * Created by Aiman Nabeel on 11/04/2018.
  */
 
+//Not implemented yet
 public class ReviewsResponse implements Serializable {
 
     @SerializedName("results")

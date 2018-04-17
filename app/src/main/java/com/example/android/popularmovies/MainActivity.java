@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         //Creating Grid Layout
-
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         //spanCount refers to number of columns in a grid
         mAdapter = new MoviesAdapter(this, this);
@@ -90,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
                 .build();
 
         //Initializing MoviesApiService interface
-
         MoviesApiService service = restAdapter.create(MoviesApiService.class);
 
         service.getPopularMovies(new Callback<MovieResult>() {

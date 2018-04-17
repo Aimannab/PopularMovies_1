@@ -12,16 +12,17 @@ android:orientation="vertical"
     android:layout_height="wrap_content"
     android:id="@+id/title"
     android:textStyle="bold"
-
+    android:textSize="@dimen/card_title_text_size"
     android:background="@android:color/white"
-
+    android:gravity="left"
+    android:textColor="@color/black"
     android:layout_gravity="left" />
 
 <TextView
     android:id="@+id/data"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:gravity="left"
     android:textStyle="normal"
 
     android:background="@android:color/white"
