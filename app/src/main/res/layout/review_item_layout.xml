@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/card_header_margin_color"
-    android:layout_margin="@dimen/card_margin">
+    android:layout_margin="@dimen/card_margin"
+    tools:ignore="UnusedResources">
 
 
     <TextView
@@ -18,7 +20,8 @@
         android:background="@android:color/white"
         android:textColor="@color/card_title_text_color"
         android:layout_marginBottom="@dimen/card_title_margin_btm"
-        android:layout_gravity="left" />
+        android:layout_gravity="left"
+        tools:ignore="RtlHardcoded" />
 
     <TextView
         android:id="@+id/content"
@@ -28,6 +31,6 @@
         android:textStyle="normal"
         android:textColor="@color/card_data_text_color"
         android:background="@android:color/white"
-        android:padding="@dimen/card_title_padding" />>
+        android:padding="@dimen/card_title_padding" />
 
 </LinearLayout>

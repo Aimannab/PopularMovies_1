@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/card_margin"
@@ -19,11 +20,13 @@
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="@color/card_data_text_color"
         android:background="@android:color/white"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        tools:ignore="HardcodedText,RtlSymmetry,UnusedAttribute"
+        android:paddingStart="@dimen/card_title_padding" />
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dp"
-        android:background="@color/divider"/>>
+        android:background="@color/divider"/>
 
 </LinearLayout>

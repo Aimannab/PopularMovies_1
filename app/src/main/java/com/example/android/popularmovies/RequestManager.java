@@ -1,5 +1,6 @@
 package com.example.android.popularmovies;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -22,11 +23,13 @@ import com.android.volley.toolbox.Volley;
  *
  ***************************************************************************************/
 
+@SuppressWarnings("WeakerAccess")
 public class RequestManager {
 
     /**
      * tag for using in logs.
      */
+    @SuppressWarnings("WeakerAccess")
     public static final String TAG = RequestManager.class.getSimpleName();
 
     /**
@@ -37,6 +40,7 @@ public class RequestManager {
     /**
      * A singleton instance of the application class for easy access in other places
      */
+    @SuppressLint("StaticFieldLeak")
     private static RequestManager sInstance;
 
     private static final Object slock = new Object();
@@ -66,6 +70,7 @@ public class RequestManager {
     /**
      * @return The Volley Request queue, the queue will be created if it is null
      */
+    @SuppressWarnings("WeakerAccess")
     public RequestQueue getRequestQueue() {
         // lazy initialize the request queue, the queue instance will be
         // created when it is accessed for the first time

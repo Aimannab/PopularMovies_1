@@ -8,6 +8,7 @@ import retrofit.http.GET;
  */
 
 //Executing "Top-Rated Movies" search through this interface, called in MainActivity.onOptionsItemSelected method
+@SuppressWarnings("ALL")
 public interface MoviesApiService2 {
     @GET("/movie/top_rated")
     void getTopRatedMovies(Callback<Movie.MovieResult> cb);

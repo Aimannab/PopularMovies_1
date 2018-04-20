@@ -9,6 +9,7 @@ import retrofit.http.GET;
  */
 
 //Executing "Popular Movies" search through this interface, also called in MainActivity.onOptionsItemSelected method
+@SuppressWarnings("WeakerAccess")
 public interface MoviesApiService {
     @GET("/movie/popular")
     void getPopularMovies(Callback<Movie.MovieResult> cb);

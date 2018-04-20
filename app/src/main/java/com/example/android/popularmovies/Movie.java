@@ -10,8 +10,10 @@ import java.util.ArrayList;
  * Created by Aiman Nabeel on 07/03/18
  */
 
+@SuppressWarnings("WeakerAccess")
 public class Movie implements Serializable {
 
+    @SuppressWarnings("WeakerAccess")
     public static final String TMDB_IMAGE_PATH = "http://image.tmdb.org/t/p/w500";
 
     @SerializedName("poster_path")

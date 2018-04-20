@@ -1,21 +1,18 @@
 package com.example.android.popularmovies;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.widget.ListView;
-import android.widget.TextView;
 
 /**
  * Created by Aiman Nabeel on 11/04/2018.
  */
 
 //Not implemented yet
+@SuppressWarnings("ALL")
+@SuppressLint("Registered")
 public class ReviewsActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
+    /*Toolbar toolbar;
     ReviewsResponse reviewsResponse;
     ListView reviews_list_view;
     ReviewsListAdapter mAdapter;
@@ -51,5 +48,5 @@ public class ReviewsActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

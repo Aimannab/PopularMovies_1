@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * Created by Aiman Nabeel on 11/04/2018.
  */
 
+@SuppressWarnings("ALL")
 public class VideoTrailersResponse implements Serializable {
 
     @SerializedName("results")

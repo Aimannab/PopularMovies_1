@@ -1,22 +1,14 @@
 package com.example.android.popularmovies;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-
 /**
  * Created by Aiman Nabeel on 11/04/2018.
  */
 
 //Not implemented yet
-public class ReviewsListAdapter extends BaseAdapter {
+@SuppressWarnings("ALL")
+public class ReviewsListAdapter /*extends BaseAdapter*/ {
 
-    ArrayList<ReviewsResponse.ReviewObject> reviewObjectArrayList;
+    /*ArrayList<ReviewsResponse.ReviewObject> reviewObjectArrayList;
     Context mContext;
 
     ReviewsListAdapter(ArrayList<ReviewsResponse.ReviewObject> reviewObjectArrayList,Context context) {
@@ -53,7 +45,7 @@ public class ReviewsListAdapter extends BaseAdapter {
         author.setText(getItem(position).getAuthor());
         content.setText(getItem(position).getContent());
         return view;
-    }
+    }*/
 
 }
 

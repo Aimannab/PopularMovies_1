@@ -49,18 +49,26 @@ import org.json.JSONObject;
         ***************************************************************************************/
 
 
+@SuppressWarnings("WeakerAccess")
 public class DetailsActivityFragment extends Fragment {
 
     LinearLayoutManager mLayoutManager;
+    @SuppressWarnings("WeakerAccess")
     CollapsingToolbarLayout collapsingToolbar;
+    @SuppressWarnings("WeakerAccess")
     ImageView header;
+    @SuppressWarnings("WeakerAccess")
     Movie movieObject;
 
+    @SuppressWarnings("WeakerAccess")
     final String BASE_URL = "http://api.themoviedb.org/3/movie/";
     //TODO Remove this key before uploading the project
+    @SuppressWarnings("WeakerAccess")
     String api_key_value = "faaa06f746cc46c17d321731163eaae2";
+    @SuppressWarnings("WeakerAccess")
     final int PURPOSE_TRAILER = 1;
     final int PURPOSE_REVIEWS = 2;
+    @SuppressWarnings("WeakerAccess")
     final String TRAILER_QUERY = "/videos?";
     final String REVIEW_QUERY = "/reviews?";
 
@@ -85,7 +93,7 @@ public class DetailsActivityFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                preferences.edit().putBoolean(String.valueOf(movieObject.getId()), isChecked).commit();
+                preferences.edit().putBoolean(String.valueOf(movieObject.getId()), isChecked).apply();
             }
         });
         boolean isFavourite = PreferenceManager.getDefaultSharedPreferences(getActivity())
@@ -115,12 +123,11 @@ public class DetailsActivityFragment extends Fragment {
         collapsingToolbar.setStatusBarScrimColor(getResources().getColor(R.color.toolbar_color_dark));
         int titleColor = getResources().getColor(R.color.white);
         collapsingToolbar.setCollapsedTitleTextColor(titleColor);
-        String baseUrl = "http://image.tmdb.org/t/p/";
         header = (ImageView) view.findViewById(R.id.header);
         if (getArguments() != null) {
-            Picasso.with(getActivity()).load(baseUrl + "w500/" + movieObject.getBackdrop()).placeholder(R.drawable.no_poster).into(header);
+            Picasso.with(getActivity()).load(movieObject.getBackdrop()).placeholder(R.drawable.no_poster).into(header);
             Picasso.with(getActivity())
-                    .load(baseUrl + "w500/" + movieObject.getBackdrop())
+                    .load(movieObject.getBackdrop())
                     .into(new Target() {
                         @Override
                         public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -250,7 +257,7 @@ public class DetailsActivityFragment extends Fragment {
                     }
                     break;
                 //Not implemented yet
-                case PURPOSE_REVIEWS:
+                /*case PURPOSE_REVIEWS:
                     final ReviewsResponse reviewsResponse = new Gson().fromJson(response.toString(), ReviewsResponse.class);
                     int reviews = reviewsResponse.getTotalresults();
                     if (reviews > 0) {
@@ -261,11 +268,12 @@ public class DetailsActivityFragment extends Fragment {
                     } else {
                         ((TextView)getView().findViewById(R.id.reviews).findViewById(R.id.data)).setText(getString(R.string.no_reviews));
                     }
-                    break;
+                    break;*/
             }
     }
 
     //Setting up intent to watch movie trailers on Youtube
+    @SuppressWarnings("WeakerAccess")
     public void watchYoutubeVideo(String id) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));

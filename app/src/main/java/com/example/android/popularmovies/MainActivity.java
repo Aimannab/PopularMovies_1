@@ -1,5 +1,6 @@
 package com.example.android.popularmovies;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -28,14 +29,17 @@ import retrofit.client.Response;
  * Created by Aiman Nabeel on 28/02/18
  */
 
+@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
 public class MainActivity extends AppCompatActivity implements MoviesAdapter.MovieAdapterOnClickHandler {
 
     Toolbar toolbar;
     String mSortingOrder = "";
+    @SuppressWarnings("WeakerAccess")
     boolean mTwoPane;
     private static final String DETAILFRAGMENT_TAG = "DFTAG";
 
 
+    @SuppressWarnings("FieldCanBeLocal")
     private RecyclerView mRecyclerView;
     private MoviesAdapter mAdapter;
 
@@ -43,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
     @Override
     public void setContentView(int layoutResID)
     {
-        DrawerLayout fullView = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
-        FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);
+        @SuppressLint("InflateParams") DrawerLayout fullView = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
+        FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);                             //FIX THIS!!!
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
         super.setContentView(fullView);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

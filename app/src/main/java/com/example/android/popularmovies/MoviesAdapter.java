@@ -1,6 +1,7 @@
 package com.example.android.popularmovies;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import java.util.List;
  * Created by Aiman Nabeel on 07/03/18
  */
 
+@SuppressWarnings("UnnecessaryLocalVariable")
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>{
 
     private String[] mMovieDetail;
@@ -62,16 +64,19 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
 
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     @Override
     public MoviesAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = mInflator.inflate(R.layout.row_movie, parent, false);
-        MoviesAdapter.MovieViewHolder viewHolder = new MoviesAdapter.MovieViewHolder(view);
+        //noinspection UnnecessaryLocalVariable
+        @SuppressWarnings("UnnecessaryLocalVariable") MoviesAdapter.MovieViewHolder viewHolder = new MoviesAdapter.MovieViewHolder(view);
 
         return viewHolder;
     }
 
 
+    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(MoviesAdapter.MovieViewHolder holder, final int position) {
 

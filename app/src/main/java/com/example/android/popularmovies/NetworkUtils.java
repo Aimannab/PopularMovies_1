@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
  * Created by Aiman Nabeel on 06/04/18
  */
 
+@SuppressWarnings("WeakerAccess")
 public class NetworkUtils {
 
     public static boolean isNetworkAvailable(Context context){
