@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,28 +50,20 @@ import org.json.JSONObject;
         ***************************************************************************************/
 
 
-@SuppressWarnings("WeakerAccess")
 public class DetailsActivityFragment extends Fragment {
 
-    LinearLayoutManager mLayoutManager;
-    @SuppressWarnings("WeakerAccess")
+    LinearLayoutManager LayoutManager;
     CollapsingToolbarLayout collapsingToolbar;
-    @SuppressWarnings("WeakerAccess")
     ImageView header;
-    @SuppressWarnings("WeakerAccess")
     Movie movieObject;
 
-    @SuppressWarnings("WeakerAccess")
-    final String BASE_URL = "http://api.themoviedb.org/3/movie/";
+    final String MOVIE_BASE_URL = "http://api.themoviedb.org/3/movie/";
     //TODO Remove this key before uploading the project
-    @SuppressWarnings("WeakerAccess")
     String api_key_value = "faaa06f746cc46c17d321731163eaae2";
-    @SuppressWarnings("WeakerAccess")
-    final int PURPOSE_TRAILER = 1;
-    final int PURPOSE_REVIEWS = 2;
-    @SuppressWarnings("WeakerAccess")
-    final String TRAILER_QUERY = "/videos?";
-    final String REVIEW_QUERY = "/reviews?";
+    final int MOVIE_PURPOSE_TRAILER = 1;
+    final int MOVIE_PURPOSE_REVIEWS = 2;
+    final String MOVIE_TRAILER_QUERY = "/videos?";
+    final String MOVIE_REVIEW_QUERY = "/reviews?";
 
 
     //Inflating layout for fragment_details, Favorite checkbox and calling bindDataToView method
@@ -82,14 +75,14 @@ public class DetailsActivityFragment extends Fragment {
         if(getArguments() != null) {
             movieObject = (Movie)getArguments().getSerializable("movieObject");
             if (NetworkUtils.isNetworkAvailable(getActivity())) {
-                requestServer(TRAILER_QUERY, PURPOSE_TRAILER, movieObject.getId());
+                requestServer(MOVIE_TRAILER_QUERY, MOVIE_PURPOSE_TRAILER, movieObject.getId());
             } else {
                 Toast.makeText(getActivity(), R.string.network_error, Toast.LENGTH_SHORT).show();
             }
         }
 
-        CheckBox isFavoriteCheckBox = (CheckBox) view.findViewById(R.id.isFavoriteCheckBox);
-        isFavoriteCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        CheckBox FavoriteCheckBox = (CheckBox) view.findViewById(R.id.isFavoriteCheckBox);
+        FavoriteCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -98,7 +91,7 @@ public class DetailsActivityFragment extends Fragment {
         });
         boolean isFavourite = PreferenceManager.getDefaultSharedPreferences(getActivity())
                 .getBoolean(String.valueOf(movieObject.getId()), false);
-        isFavoriteCheckBox.setChecked(isFavourite);
+        FavoriteCheckBox.setChecked(isFavourite);
 
         bindDataToView(view);
         return view;
@@ -168,27 +161,27 @@ public class DetailsActivityFragment extends Fragment {
 
     //Extracting movie data individually and binding it to their respective Views. And then calling their respective methods from Movie.class
     private void bindDataToView(View view) {
-        //set release date
+        //setting release date
         setValuesToView(view.findViewById(R.id.release_date), getString(R.string.release_date), movieObject.getReleaseDate());
-        //set original language
+        //setting original language
         setValuesToView(view.findViewById(R.id.original_language), getString(R.string.original_language), movieObject.getOriginalLanguage());
-        //set overview
+        //setting  movie overview
         setValuesToView(view.findViewById(R.id.overview), getString(R.string.overview), movieObject.getDescription());
-        //set average ratigns
+        //setting average ratigns
         setValuesToView(view.findViewById(R.id.average_rating), getString(R.string.average_rating), "Approx: " + movieObject.getVoteAverage());
-        //set popularity
+        //setting popularity
         setValuesToView(view.findViewById(R.id.popularity), getString(R.string.popularity), "Approx: " + movieObject.getPopularity());
-        //set total rating
+        //setting total rating
         setValuesToView(view.findViewById(R.id.total_rating), getString(R.string.total_rating), "Approx: " + movieObject.getVoteCount());
         //Not implemented yet
-        //set show review
+        //setting show review
         /*setValuesToView(view.findViewById(R.id.reviews), getString(R.string.reviews), getString(R.string.read_reviews));
         view.findViewById(R.id.reviews).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (NetworkUtils.isNetworkAvailable(getActivity())) {
                     //Passing empty string will get movies list sorted by original title in ascending order.
-                    //requestServer(REVIEW_QUERY, PURPOSE_REVIEWS, movieObject.getId());
+                    //requestServer(MOVIE_REVIEW_QUERY, PURPOSE_REVIEWS, movieObject.getId());
                 } else {
                     Toast.makeText(getActivity(), R.string.network_error, Toast.LENGTH_SHORT).show();
                 }
@@ -206,7 +199,7 @@ public class DetailsActivityFragment extends Fragment {
 
     //Building Uri with API key, parameters and values
     private void requestServer(String queryKey, final int purpose, long movieId) {
-        final String GET_TRAILER_URL = BASE_URL + movieId + queryKey;
+        final String GET_TRAILER_URL = MOVIE_BASE_URL + movieId + queryKey;
         String api_key = "api_key";
         Uri builtUri = Uri.parse(GET_TRAILER_URL).buildUpon()
                 .appendQueryParameter(api_key, api_key_value).build();
@@ -217,7 +210,7 @@ public class DetailsActivityFragment extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        parseResponseBasedOnPurpose(purpose, response);
+                        parseResponseBasedOnMoviePurpose(purpose, response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -230,17 +223,20 @@ public class DetailsActivityFragment extends Fragment {
         RequestManager.getInstance(getActivity()).addToRequestQueue(req);
     }
 
-    private void parseResponseBasedOnPurpose(int purpose, JSONObject response) {
+
+    //Populating trailers and reviews, setting onClick method to start intent via watchYoutubeTrailer method
+    private void parseResponseBasedOnMoviePurpose(int purpose, JSONObject response) {
         if (isAdded() && isVisible())
             switch (purpose) {
-                case PURPOSE_TRAILER:
+                case MOVIE_PURPOSE_TRAILER:
                     final VideoTrailersResponse trailerResponse = new Gson().fromJson(response.toString(), VideoTrailersResponse.class);
                     int trailers = trailerResponse.getTrailerObjectAL().size();
                     if (trailers == 0) {
                         ((TextView) getView().findViewById(R.id.trailers).findViewById(R.id.data)).setText(getString(R.string.no_trailers));
+                        Log.w("myApp", "no network");
                     } else {
                         String trailersFound = getResources().getQuantityString(R.plurals.trailers_qty, trailers, trailers);
-                        ((TextView) getView().findViewById(R.id.trailers).findViewById(R.id.data)).setText(trailersFound);
+                        ((TextView) getView().findViewById(R.id.data)).setText(trailersFound);
                         LinearLayout trailers_ll = (LinearLayout) getView().findViewById(R.id.trailers);
                         for (final VideoTrailersResponse.TrailerObject trailerObject : trailerResponse.getTrailerObjectAL()) {
                             View view = View.inflate(getActivity(), R.layout.trailer_item_view, null);
@@ -249,13 +245,13 @@ public class DetailsActivityFragment extends Fragment {
                             textView.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    watchYoutubeVideo(trailerObject.getKey());
+                                    watchYoutubeTrailer(trailerObject.getKey());
                                 }
                             });
                             trailers_ll.addView(view);
                         }
                     }
-                    break;
+                    //break;
                 //Not implemented yet
                 /*case PURPOSE_REVIEWS:
                     final ReviewsResponse reviewsResponse = new Gson().fromJson(response.toString(), ReviewsResponse.class);
@@ -273,8 +269,7 @@ public class DetailsActivityFragment extends Fragment {
     }
 
     //Setting up intent to watch movie trailers on Youtube
-    @SuppressWarnings("WeakerAccess")
-    public void watchYoutubeVideo(String id) {
+    public void watchYoutubeTrailer(String id) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
             startActivity(intent);

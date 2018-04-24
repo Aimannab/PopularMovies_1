@@ -1,6 +1,5 @@
 package com.example.android.popularmovies;
 
-import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -8,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
  */
 
 //Not implemented yet
-@SuppressWarnings("ALL")
-@SuppressLint("Registered")
 public class ReviewsActivity extends AppCompatActivity {
 
     /*Toolbar toolbar;
