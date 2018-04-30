@@ -10,10 +10,8 @@ import java.util.ArrayList;
  * Created by Aiman Nabeel on 07/03/18
  */
 
-@SuppressWarnings("WeakerAccess")
 public class Movie implements Serializable {
 
-    @SuppressWarnings("WeakerAccess")
     public static final String TMDB_IMAGE_PATH = "http://image.tmdb.org/t/p/w500";
 
     @SerializedName("poster_path")
@@ -44,10 +42,8 @@ public class Movie implements Serializable {
     @SerializedName("id")
     private long id;
 
-
     @SerializedName("original_language")
     private String originalLanguage;
-
 
     @SerializedName("popularity")
     private float popularity;
@@ -73,13 +69,11 @@ public class Movie implements Serializable {
         this.title = title;
     }
 
-
     public String getPoster() { return TMDB_IMAGE_PATH + poster;}
 
     public void setPoster(String poster) {
         this.poster = poster;
     }
-
 
     public String getDescription() {
         return description;
@@ -88,7 +82,6 @@ public class Movie implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
     public String getBackdrop() {
         return TMDB_IMAGE_PATH + backdrop;
@@ -106,9 +99,7 @@ public class Movie implements Serializable {
             return isAdult;
         }
 
-    public String getReleaseDate() {
-            return releaseDate;
-        }
+    public String getReleaseDate() { return releaseDate; }
 
     public int[] getGenre_ids() {
             return genre_ids;
@@ -121,7 +112,6 @@ public class Movie implements Serializable {
     public String getOriginalLanguage() {
             return originalLanguage;
         }
-
 
     public float getPopularity() {
             return popularity;

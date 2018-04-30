@@ -20,16 +20,13 @@ import com.android.volley.toolbox.Volley;
  *    Date: 2018
  *    Code version: N/A
  *    Availability: https://github.com/ravisravan89/PopularMovies
- *
  ***************************************************************************************/
 
-@SuppressWarnings("WeakerAccess")
 public class RequestManager {
 
     /**
      * tag for using in logs.
      */
-    @SuppressWarnings("WeakerAccess")
     public static final String TAG = RequestManager.class.getSimpleName();
 
     /**
@@ -70,7 +67,6 @@ public class RequestManager {
     /**
      * @return The Volley Request queue, the queue will be created if it is null
      */
-    @SuppressWarnings("WeakerAccess")
     public RequestQueue getRequestQueue() {
         // lazy initialize the request queue, the queue instance will be
         // created when it is accessed for the first time

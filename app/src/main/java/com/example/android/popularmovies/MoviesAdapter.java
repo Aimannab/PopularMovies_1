@@ -1,7 +1,6 @@
 package com.example.android.popularmovies;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import java.util.List;
  * Created by Aiman Nabeel on 07/03/18
  */
 
-@SuppressWarnings("UnnecessaryLocalVariable")
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder>{
 
     private String[] mMovieDetail;
@@ -40,7 +38,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         mClickHandler = clickHandler;
 
     }
-
 
     //Inner class
     public class MovieViewHolder extends RecyclerView.ViewHolder {
@@ -64,7 +61,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
 
 
 
-    @SuppressWarnings("UnnecessaryLocalVariable")
     @Override
     public MoviesAdapter.MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -76,7 +72,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     }
 
 
-    @SuppressLint("RecyclerView")
     @Override
     public void onBindViewHolder(MoviesAdapter.MovieViewHolder holder, final int position) {
 
@@ -97,8 +92,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
             }
         });
 
-
-
     }
 
     @Override
@@ -112,8 +105,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         this.mMovieList.clear();
         this.mMovieList.addAll(movieList);
         //This is done so we know that data has changed. To avoid crashing of app
-
-
 
         notifyDataSetChanged();
     }

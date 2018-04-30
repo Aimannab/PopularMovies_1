@@ -38,7 +38,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-        //Setting up Home button
+        // When the home button is pressed, take the user back to the MainActivity
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             if (item.getItemId() == android.R.id.home) {

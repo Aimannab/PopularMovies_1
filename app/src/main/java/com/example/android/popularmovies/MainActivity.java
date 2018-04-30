@@ -1,6 +1,5 @@
 package com.example.android.popularmovies;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -29,28 +28,26 @@ import retrofit.client.Response;
  * Created by Aiman Nabeel on 28/02/18
  */
 
-@SuppressWarnings({"FieldCanBeLocal", "WeakerAccess"})
 public class MainActivity extends AppCompatActivity implements MoviesAdapter.MovieAdapterOnClickHandler {
 
     Toolbar toolbar;
     String mSortingOrder = "";
-    @SuppressWarnings("WeakerAccess")
-    boolean mTwoPane;
-    private static final String DETAILFRAGMENT_TAG = "DFTAG";
+    boolean movieTwoPane;
 
 
-    @SuppressWarnings("FieldCanBeLocal")
     private RecyclerView mRecyclerView;
     private MoviesAdapter mAdapter;
 
     //Creating Main Toolbar and Navigation Drawer via activity_base.xml
+    //Ref: http://mateoj.com/2015/06/21/adding-toolbar-and-navigation-drawer-all-activities-android/
     @Override
     public void setContentView(int layoutResID)
     {
-        @SuppressLint("InflateParams") DrawerLayout fullView = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
-        FrameLayout activityContainer = (FrameLayout) fullView.findViewById(R.id.activity_content);                             //FIX THIS!!!
+        DrawerLayout fullViewFeature = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_base, null);
+        //activity_base.xml has been id-ied as activity_content
+        FrameLayout activityContainer = (FrameLayout) fullViewFeature.findViewById(R.id.activity_content);
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
-        super.setContentView(fullView);
+        super.setContentView(fullViewFeature);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Popular Movies");
@@ -80,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
 
 
         //Creating RestAdapter
+        //Ref: http://mateoj.com/2015/10/07/creating-movies-app-retrofit-picass-android-part2/
         //TODO Remove this key before uploading the project
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint("http://api.themoviedb.org/3")
@@ -208,7 +206,8 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.Mov
     @Override
     public void onMovieItemClicked(Movie movieObject) {
 
-        if (mTwoPane) {
+        //if false
+        if (movieTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.

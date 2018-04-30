@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -46,7 +47,6 @@ import org.json.JSONObject;
         *    Date: 2018
         *    Code version: N/A
         *    Availability: https://github.com/ravisravan89/PopularMovies
-        *
         ***************************************************************************************/
 
 
@@ -75,7 +75,13 @@ public class DetailsActivityFragment extends Fragment {
         if(getArguments() != null) {
             movieObject = (Movie)getArguments().getSerializable("movieObject");
             if (NetworkUtils.isNetworkAvailable(getActivity())) {
-                requestServer(MOVIE_TRAILER_QUERY, MOVIE_PURPOSE_TRAILER, movieObject.getId());
+                //Using Handler class to delay loading this view, so it's ready for all the responses and shows them every time a movie is clicked
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override public void run() {
+                        requestServer(MOVIE_TRAILER_QUERY, MOVIE_PURPOSE_TRAILER, movieObject.getId()); } }, 200);
+                        //Instead of just this line of code
+                        //requestServer(MOVIE_TRAILER_QUERY, MOVIE_PURPOSE_TRAILER, movieObject.getId());
             } else {
                 Toast.makeText(getActivity(), R.string.network_error, Toast.LENGTH_SHORT).show();
             }
@@ -98,7 +104,9 @@ public class DetailsActivityFragment extends Fragment {
     }
 
 
-    //Setting up DetailActivity layout, CollapsingToolbar, Backdrop image, etc.
+    //Setting up DetailActivity layout, ActionBar, CollapsingToolbar, Backdrop image, etc.
+    //References from fragment_detail.xml
+    //Ref: http://saulmm.github.io/mastering-coordinator
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -224,7 +232,7 @@ public class DetailsActivityFragment extends Fragment {
     }
 
 
-    //Populating trailers and reviews, setting onClick method to start intent via watchYoutubeTrailer method
+    //Populating trailers and reviews for a specific movie, setting onClick method to start intent via watchYoutubeTrailer method
     private void parseResponseBasedOnMoviePurpose(int purpose, JSONObject response) {
         if (isAdded() && isVisible())
             switch (purpose) {
@@ -233,11 +241,11 @@ public class DetailsActivityFragment extends Fragment {
                     int trailers = trailerResponse.getTrailerObjectAL().size();
                     if (trailers == 0) {
                         ((TextView) getView().findViewById(R.id.trailers).findViewById(R.id.data)).setText(getString(R.string.no_trailers));
-                        Log.w("myApp", "no network");
+                        Log.w("myApp", "no trailers/network");
                     } else {
                         String trailersFound = getResources().getQuantityString(R.plurals.trailers_qty, trailers, trailers);
                         ((TextView) getView().findViewById(R.id.data)).setText(trailersFound);
-                        LinearLayout trailers_ll = (LinearLayout) getView().findViewById(R.id.trailers);
+                        LinearLayout trailers_view = (LinearLayout) getView().findViewById(R.id.trailers);
                         for (final VideoTrailersResponse.TrailerObject trailerObject : trailerResponse.getTrailerObjectAL()) {
                             View view = View.inflate(getActivity(), R.layout.trailer_item_view, null);
                             TextView textView = (TextView) view.findViewById(R.id.trailername);
@@ -248,7 +256,7 @@ public class DetailsActivityFragment extends Fragment {
                                     watchYoutubeTrailer(trailerObject.getKey());
                                 }
                             });
-                            trailers_ll.addView(view);
+                            trailers_view.addView(view);
                         }
                     }
                     //break;
