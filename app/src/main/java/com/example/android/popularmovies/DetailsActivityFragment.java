@@ -259,6 +259,7 @@ public class DetailsActivityFragment extends Fragment {
                             trailers_view.addView(view);
                         }
                     }
+            }
                     //break;
                 //Not implemented yet
                 /*case PURPOSE_REVIEWS:
@@ -273,7 +274,7 @@ public class DetailsActivityFragment extends Fragment {
                         ((TextView)getView().findViewById(R.id.reviews).findViewById(R.id.data)).setText(getString(R.string.no_reviews));
                     }
                     break;*/
-            }
+
     }
 
     //Setting up intent to watch movie trailers on Youtube
