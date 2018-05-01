@@ -59,7 +59,7 @@ public class DetailsActivityFragment extends Fragment {
 
     final String MOVIE_BASE_URL = "http://api.themoviedb.org/3/movie/";
     //TODO Remove this key before uploading the project
-    String api_key_value = "faaa06f746cc46c17d321731163eaae2";
+    String api_key_value = "1234";
     final int MOVIE_PURPOSE_TRAILER = 1;
     final int MOVIE_PURPOSE_REVIEWS = 2;
     final String MOVIE_TRAILER_QUERY = "/videos?";
@@ -197,7 +197,7 @@ public class DetailsActivityFragment extends Fragment {
         });*/
     }
 
-    //Setting up Title and Data TextViews
+    //Setting up Title and Data TextViews via detail_recycler_item.xml
     private void setValuesToView(View view, String heading, String value) {
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView data = (TextView) view.findViewById(R.id.data);
@@ -240,11 +240,11 @@ public class DetailsActivityFragment extends Fragment {
                     final VideoTrailersResponse trailerResponse = new Gson().fromJson(response.toString(), VideoTrailersResponse.class);
                     int trailers = trailerResponse.getTrailerObjectAL().size();
                     if (trailers == 0) {
-                        ((TextView) getView().findViewById(R.id.trailers).findViewById(R.id.data)).setText(getString(R.string.no_trailers));
+                        ((TextView) getView().findViewById(R.id.trailers).findViewById(R.id.trailerdata)).setText(getString(R.string.no_trailers));
                         Log.w("myApp", "no trailers/network");
                     } else {
                         String trailersFound = getResources().getQuantityString(R.plurals.trailers_qty, trailers, trailers);
-                        ((TextView) getView().findViewById(R.id.data)).setText(trailersFound);
+                        ((TextView) getView().findViewById(R.id.trailerdata)).setText(trailersFound);
                         LinearLayout trailers_view = (LinearLayout) getView().findViewById(R.id.trailers);
                         for (final VideoTrailersResponse.TrailerObject trailerObject : trailerResponse.getTrailerObjectAL()) {
                             View view = View.inflate(getActivity(), R.layout.trailer_item_view, null);
