@@ -1,12 +1,12 @@
 # Project Overview
 
-Most of us can relate to kicking back on the couch and enjoying a movie with friends and family. In this project, you’ll build an app to allow users to discover the most popular movies playing.
+Most of us can relate to kicking back on the couch and enjoying a movie with friends and family. In this project, you’ll build an app to allow users to discover the most popular movies playing. 
 You’ll build the complete functionality of this app in two stages which you will submit separately.
 
 # Stage 1:  Main Discovery Screen, A Details View, and Settings
 ## User Experience
 
-In this stage you’ll build the core experience of your movies app.
+In this stage you’ll build the core experience of your movies app. You will build a clean UI, sync to a server, and present information to the user.
 Your app will:
 * Upon launch, present the user with an grid arrangement of movie posters.
 * Allow your user to change sort order via a setting:
@@ -38,6 +38,11 @@ You should have the skills you need to complete this app after completing Lesson
 * Build a UI layout for multiple Activities.
 * Launch these Activities via Intent.
 * Fetch data from themovieDB API
+
+# Implementation Guide
+
+For step-by-step support, we've provided details on how to approach each task in this Implementation Guide.
+Link: https://docs.google.com/document/d/1ZlN1fUsCSKuInLECcJkslIqvpKlP7jWL2TP9m6UiA6I/pub?embedded=true
 
 # Rubric
 
