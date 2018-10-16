@@ -18,11 +18,11 @@ Your app will:
   * user rating (called vote_average in the api)
   * release date
 
-# Project UX
+# App UX
 
-![](Popular Movies 1(1).gif)
+<img src="https://github.com/Aimannab/popular_movies/blob/master/Popular%20Movies%201(1).gif" />
 
-![](Popular Movies 1(2).gif)
+<img src="https://github.com/Aimannab/popular_movies/blob/master/Popular%20Movies%201(2).gif" />
 
 # Why this Project
 
